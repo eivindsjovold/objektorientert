@@ -92,22 +92,24 @@ double convertValue(double exchange_rate){
 	return exchange_value;
 }
 
-/*
-int mult_table(){
-	int width = 10;
-	int height = 10;
-	//cin >> width;
-	//cin >> height;
-	vector<int> multitable[10][10];
+
+void mult_table(){
+	int width, height;
+	cin >> width;
+	cin >> height;
 	for(int i = 0; i < height + 1; ++i){
 		for(int j = 0; j < width + 1; ++j){
-			vector<int> multitable[i].push_back((j+1)^2);
-		} 
+			int result = i*j;
+			if( result < 100){
+				cout <<	setw(3) << result;
+			}
+			else if(result >= 100){
+				cout << setw(4) << result;
+			}
+		}
+		cout << endl; 
 	}
-	cout << multitable;
-	return 0;
 }
-*/
 
 double discriminant(double a, double b, double c){
 	return (b*b) - 4*a*c;
@@ -212,7 +214,7 @@ vector<int> calculateBalance(int rate, int year, int balance){
 
 void printBalance(vector<int> balance){
 	cout << "Year:  Balance: \n";
-	for(int i = 0; i < balance.size(); ++i){ 
+	for(int i = 0; i < (int)balance.size(); ++i){ 
 		cout << i << "   " << balance[i] << "\n";  
 	}
 }
@@ -223,7 +225,7 @@ int main(){
 	double exchange_rate = 11.33;
 	while(user_input != 0){
 		cout << "Please choose function: \n" << "0: Exit \n" << "1: Sum two integers \n" <<  "2: Sum user decided number of integers \n" 
-		<< "3: Convert NOK to Pounds \n" << "4: seconds to hr:min:sec \n" << "5: Solve Quadratic Equation \n" << "6: Pythagoras\n7: Print balance\n"<< "Input integer to choose function\n";
+		<< "3: Convert NOK to Pounds \n" << "4: seconds to hr:min:sec \n" << "5: Solve Quadratic Equation \n" << "6: Pythagoras\n7: Print balance\n8: Gangetabell"<< "Input integer to choose function\n";
 		cin >> user_input;
 		if(user_input == 1){
 			sumNumbers();
@@ -256,6 +258,9 @@ int main(){
 			cin >> year; 
 			vector<int> balance_vector = calculateBalance(rate,year,balance);
 			printBalance(balance_vector);
+		}
+		else if(user_input == 8){
+			mult_table();
 		}
 		else{
 			cout << "Please input a valid number: \n";
